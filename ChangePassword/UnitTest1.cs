@@ -1,14 +1,47 @@
-﻿using System;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using OpenQA.Selenium;
+using OpenQA.Selenium.Chrome;
+using NUnit.Framework;
 
 namespace ChangePassword
 {
-    [TestClass]
+    [TestFixture]
     public class UnitTest1
     {
-        [TestMethod]
-        public void TestMethod1()
+        IWebDriver driver;
+
+        //[OneTimeSetUp] // вызывается перед началом запуска всех тестов
+        //public void OneTimeSetUp()
+        //{
+
+        //}
+
+        //[OneTimeTearDown] //вызывается после завершения всех тестов
+        //public void OneTimeTearDown()
+        //{ 
+
+        //}
+
+        [SetUp] // вызывается перед каждым тестом
+        public void SetUp()
         {
+            driver = new ChromeDriver();
+        }
+
+        [TearDown] // вызывается после каждого теста
+        public void TearDown()
+        {
+            driver.Quit();
+        }
+
+        [Test]
+        public void Password()
+        {
+
+            string actual = "Успех";
+            ChangePassword avto = new ChangePassword(driver);
+            avto.Action();
+
+            Assert.AreEqual(avto.text, actual);
         }
     }
 }

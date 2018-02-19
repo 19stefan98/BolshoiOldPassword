@@ -36,12 +36,16 @@ namespace ChangePassword
         [Test]
         public void Password()
         {
+            Registration reg = new Registration(driver);
+            reg.Action();
 
             string actual = "Успех";
-            ChangePassword avto = new ChangePassword(driver);
-            avto.Action();
 
-            Assert.AreEqual(avto.text, actual);
+            ChangePassword pass = new ChangePassword(driver,reg.pass);
+            pass.Action();
+
+            Assert.AreEqual(pass.text, actual);
+
         }
     }
 }

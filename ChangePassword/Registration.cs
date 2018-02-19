@@ -30,7 +30,7 @@ namespace ChangePassword
             for (int v = 0; v < 4; v++)
             {
                 a += Convert.ToChar(rand.Next(97, 122));
-            }
+            } 
 
             var login = (new WebDriverWait(driver, timeout)).Until(ExpectedConditions.ElementIsVisible(By.Name("REGISTER[LOGIN]")));
             login.SendKeys(a + "test");

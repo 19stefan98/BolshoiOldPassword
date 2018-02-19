@@ -8,15 +8,19 @@ namespace ChangePassword
     {
         public IWebDriver driver { get; set; }
         public string pass { get; set; }
-        public Registration(IWebDriver driver)
+        TimeSpan timeout = new TimeSpan(00, 01, 00);
+        Random rand = new Random();
 
+        public Registration(IWebDriver driver)
         {
             this.driver = driver;
         }
 
         public void Action()
         {
-            TimeSpan timeout = new TimeSpan(00, 01, 00);
+            string a = "";
+            string num = "";
+
             driver.Manage().Window.Maximize();
             driver.Navigate().GoToUrl("http://bolshoy.itech-test.ru/");
 
@@ -25,8 +29,6 @@ namespace ChangePassword
             var registracia = (new WebDriverWait(driver, timeout)).Until(ExpectedConditions.ElementIsVisible(By.XPath("//*[@class=\"is-tabs-nav\"]/a[2]")));
             registracia.Click();
 
-            string a = "";
-            Random rand = new Random();
             for (int v = 0; v < 4; v++)
             {
                 a += Convert.ToChar(rand.Next(97, 122));
@@ -42,7 +44,6 @@ namespace ChangePassword
             var email = (new WebDriverWait(driver, timeout)).Until(ExpectedConditions.ElementIsVisible(By.Name("REGISTER[EMAIL]")));
             email.SendKeys(a + "@mail.ru");
 
-            string num = "";
             for (int v = 0; v < 6; v++)
             {
                 num += rand.Next(1, 9);

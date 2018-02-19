@@ -9,18 +9,6 @@ namespace ChangePassword
     {
         IWebDriver driver;
 
-        //[OneTimeSetUp] // вызывается перед началом запуска всех тестов
-        //public void OneTimeSetUp()
-        //{
-
-        //}
-
-        //[OneTimeTearDown] //вызывается после завершения всех тестов
-        //public void OneTimeTearDown()
-        //{ 
-
-        //}
-
         [SetUp] // вызывается перед каждым тестом
         public void SetUp()
         {
@@ -45,7 +33,6 @@ namespace ChangePassword
             pass.Action();
 
             Assert.AreEqual(pass.text, actual);
-
         }
     }
 }

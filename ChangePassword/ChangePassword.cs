@@ -9,6 +9,7 @@ namespace ChangePassword
         public IWebDriver driver { get; set; }
         public string text { get; set; }
         public string pass { get; set; }
+        TimeSpan timeout = new TimeSpan(00, 00, 15);
 
         public ChangePassword(IWebDriver driver, string pass )
         {
@@ -18,17 +19,14 @@ namespace ChangePassword
 
         public void Action()
         {
-                TimeSpan timeout = new TimeSpan(00, 00, 15);
-            //string pass = "123456";
             var OldPassword = (new WebDriverWait(driver, timeout)).Until(ExpectedConditions.ElementIsVisible(By.Name("CHANGE[OLD_PASS]")));
-                OldPassword.SendKeys(pass);
+            OldPassword.SendKeys(pass);
             var NewPass = (new WebDriverWait(driver, timeout)).Until(ExpectedConditions.ElementIsVisible(By.Name("CHANGE[NEW_PASS]")));
-                NewPass.SendKeys(pass);
+            NewPass.SendKeys(pass);
             var NewPassConf = (new WebDriverWait(driver, timeout)).Until(ExpectedConditions.ElementIsVisible(By.Name("CHANGE[CONFIRM_NEW_PASS]")));
-                NewPassConf.SendKeys(pass);
-                NewPassConf.Submit();
-                text = (new WebDriverWait(driver, timeout)).Until(ExpectedConditions.ElementIsVisible(By.ClassName("md-header"))).Text;
-            
+            NewPassConf.SendKeys(pass);
+            NewPassConf.Submit();
+            text = (new WebDriverWait(driver, timeout)).Until(ExpectedConditions.ElementIsVisible(By.ClassName("md-header"))).Text;
         }
     }
 }

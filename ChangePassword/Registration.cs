@@ -28,7 +28,6 @@ namespace ChangePassword
             string a = "";
             Random rand = new Random();
             for (int v = 0; v < 4; v++)
-
             {
                 a += Convert.ToChar(rand.Next(97, 122));
             }
@@ -43,18 +42,14 @@ namespace ChangePassword
             var email = (new WebDriverWait(driver, timeout)).Until(ExpectedConditions.ElementIsVisible(By.Name("REGISTER[EMAIL]")));
             email.SendKeys(a + "@mail.ru");
 
-            string sum = "";
-
-            Random randj = new Random();
-
+            string num = "";
             for (int v = 0; v < 6; v++)
-
             {
-                sum += Convert.ToChar(rand.Next(48, 57));
+                num += rand.Next(1, 9);
             }
 
             var phone = (new WebDriverWait(driver, timeout)).Until(ExpectedConditions.ElementIsVisible(By.Name("REGISTER[PERSONAL_PHONE]")));
-            phone.SendKeys("+7929" + sum);
+            phone.SendKeys("+7929" + num);
             pass = "123456";
             var password = (new WebDriverWait(driver, timeout)).Until(ExpectedConditions.ElementIsVisible(By.Name("REGISTER[PASSWORD]")));
             password.SendKeys(pass);
